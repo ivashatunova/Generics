@@ -1,7 +1,10 @@
 import java.util.Arrays;
+import java.util.Comparator;
+
 
 public class AviaSouls {
     private Ticket[] tickets = new Ticket[0];
+
 
     /**
      * Вспомогательный метод для имитации добавления элемента в массив
@@ -40,7 +43,8 @@ public class AviaSouls {
      * @param to   Куда прилетаем
      * @return Массив из подходящих билетов
      */
-    public Ticket[] search(String from, String to) {
+
+    private Ticket[] onlySearch (String from, String to) {
         Ticket[] result = new Ticket[0]; // массив для ответа
         for (Ticket ticket : tickets) { // перебираем все билеты
             if (ticket.getFrom().equals(from)) { // совпадает аэропорт вылета
@@ -49,8 +53,18 @@ public class AviaSouls {
                 }
             }
         }
+        return result;
+    }
+    public Ticket[] search(String from, String to) {
+        Ticket[] result = onlySearch(from, to);
         Arrays.sort(result);
         return result;
 
+    }
+
+    public Ticket[] searchAndSortBy(String from, String to, Comparator<Ticket> comparator) {
+        Ticket[] result = onlySearch(from, to);
+        Arrays.sort(result, comparator);
+        return result;
     }
 }
