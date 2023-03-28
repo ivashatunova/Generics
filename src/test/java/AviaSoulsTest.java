@@ -5,11 +5,11 @@ import java.util.Arrays;
 
 public class AviaSoulsTest {
     Ticket ticket1 = new Ticket("DFG", "RTS", 10_000, 5, 7);
-    Ticket ticket2 = new Ticket("DFG", "RTS", 16_000, 5, 7);
-    Ticket ticket3 = new Ticket("GHK", "RTS", 100_000, 5, 7);
+    Ticket ticket2 = new Ticket("DFG", "RTS", 16_000, 5, 12);
+    Ticket ticket3 = new Ticket("GHK", "RTS", 100_000, 5, 11);
     Ticket ticket4 = new Ticket("DFG", "GHK", 253_070, 5, 7);
-    Ticket ticket5 = new Ticket("DFG", "RTS", 7_700, 5, 7);
-    Ticket ticket6 = new Ticket("DFG", "GHK", 10_054, 5, 7);
+    Ticket ticket5 = new Ticket("DFG", "RTS", 7_700, 5, 10);
+    Ticket ticket6 = new Ticket("DFG", "GHK", 10_054, 5, 8);
 
     private AviaSouls fillTickets() {
         AviaSouls tickets = new AviaSouls();
@@ -24,7 +24,7 @@ public class AviaSoulsTest {
 
 
     @Test
-    public void shouldComparable() {
+    public void shouldComparablePrice() {
         Ticket[] actual = {ticket1, ticket2, ticket3, ticket4, ticket5, ticket6};
         Ticket[] expected = {ticket5, ticket1, ticket6, ticket2, ticket3, ticket4};
         Arrays.sort(actual);
@@ -37,8 +37,16 @@ public class AviaSoulsTest {
         Ticket[] expected = {ticket5, ticket1, ticket2};
         Ticket[] actual = ticketsManager.search("DFG", "RTS");
         Assertions.assertArrayEquals(expected, actual);
-
-
     }
+
+    @Test
+    public void shouldComparableTime() {
+        TicketTimeComparator timeComparator = new TicketTimeComparator();
+        Ticket[] actual = {ticket1, ticket2, ticket3, ticket4, ticket5, ticket6};
+        Ticket[] expected = {ticket1, ticket4, ticket6, ticket5, ticket3, ticket2};
+        Arrays.sort(actual, timeComparator);
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
 
 }
