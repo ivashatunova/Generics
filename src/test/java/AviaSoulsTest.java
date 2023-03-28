@@ -47,14 +47,13 @@ public class AviaSoulsTest {
         Arrays.sort(actual, timeComparator);
         Assertions.assertArrayEquals(expected, actual);
     }
+
     @Test
     public void shouldSortTimeAfterSearch() {
         TicketTimeComparator timeComparator = new TicketTimeComparator();
         AviaSouls ticketsManager = fillTickets();
         Ticket[] expected = {ticket1, ticket5, ticket2};
-        Ticket[] actual = ticketsManager.searchAndSortBy("DFG", "RTS", timeComparator );
+        Ticket[] actual = ticketsManager.searchAndSortBy("DFG", "RTS", timeComparator);
         Assertions.assertArrayEquals(expected, actual);
     }
-
-
 }

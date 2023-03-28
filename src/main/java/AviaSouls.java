@@ -44,7 +44,7 @@ public class AviaSouls {
      * @return Массив из подходящих билетов
      */
 
-    private Ticket[] onlySearch (String from, String to) {
+    private Ticket[] onlySearch(String from, String to) {
         Ticket[] result = new Ticket[0]; // массив для ответа
         for (Ticket ticket : tickets) { // перебираем все билеты
             if (ticket.getFrom().equals(from)) { // совпадает аэропорт вылета
@@ -55,6 +55,7 @@ public class AviaSouls {
         }
         return result;
     }
+
     public Ticket[] search(String from, String to) {
         Ticket[] result = onlySearch(from, to);
         Arrays.sort(result);
