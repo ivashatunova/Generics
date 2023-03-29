@@ -40,6 +40,21 @@ public class AviaSoulsTest {
     }
 
     @Test
+    public void shouldSearch1Ticket() {
+        AviaSouls ticketsManager = fillTickets();
+        Ticket[] expected = {ticket3};
+        Ticket[] actual = ticketsManager.search("GHK", "RTS");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldNotSearchTicket() {
+        AviaSouls ticketsManager = fillTickets();
+        Ticket[] expected = {};
+        Ticket[] actual = ticketsManager.search("GAK", "RTS");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+    @Test
     public void shouldComparableTime() {
         TicketTimeComparator timeComparator = new TicketTimeComparator();
         Ticket[] actual = {ticket1, ticket2, ticket3, ticket4, ticket5, ticket6};

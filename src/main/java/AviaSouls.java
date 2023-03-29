@@ -60,7 +60,6 @@ public class AviaSouls {
         Ticket[] result = onlySearch(from, to);
         Arrays.sort(result);
         return result;
-
     }
 
     public Ticket[] searchAndSortBy(String from, String to, Comparator<Ticket> comparator) {
